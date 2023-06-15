@@ -1,0 +1,92 @@
+#include <stdio.h>
+
+int main() {
+    // Define the two sets as arrays
+    int set1[] = {3, 1, 7, 9};
+    int set2[] = {2, 4, 1, 9, 3};
+    int size1 = sizeof(set1) / sizeof(set1[0]);
+    int size2 = sizeof(set2) / sizeof(set2[0]);
+
+    int sum = 0;
+    int distinctElements[100]; // Assuming a maximum of 100 distinct elements
+
+    // Iterate over elements in set1
+    for (int i = 0; i < size1; i++) {
+        int element = set1[i];
+        int isDistinct = 1; // Flag to check if element is distinct
+
+        // Check if element is already in distinctElements array
+        for (int j = 0; j < sum; j++) {
+            if (element == distinctElements[j]) {
+                isDistinct = 0; // Element is not distinct
+                break;
+            }
+        }
+
+        // Add distinct element to sum and distinctElements array
+        if (isDistinct) {
+            sum += element;
+            distinctElements[sum - 1] = element;
+        }
+    }
+
+    // Iterate over elements in set2
+    for (int i = 0; i < size2; i++) {
+        int element = set2[i];
+        int isDistinct = 1; // Flag to check if element is distinct
+
+        // Check if element is already in distinctElements array
+        for (int j = 0; j < sum; j++) {
+            if (element == distinctElements[j]) {
+                isDistinct = 0; // Element is not distinct
+                break;
+            }
+        }
+
+        // Add distinct element to sum and distinctElements array
+        if (isDistinct) {
+            sum += element;
+            distinctElements[sum - 1] = element;
+        }
+    }
+
+    // Print the sum of distinct elements
+    printf("Sum of distinct elements: %d\n", sum);
+
+    return 0;
+}
+
+// problem 2
+
+#include <stdio.h>
+
+// Function to calculate the dot product of two vectors
+int dotProduct(int v1[], int v2[], int size) {
+    int product = 0;
+    for (int i = 0; i < size; i++) {
+        product += v1[i] * v2[i];
+    }
+    return product;
+}
+
+int main() {
+    // Define the vectors as arrays
+    int vectors[][3] = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}; // Example vectors
+    int numVectors = sizeof(vectors) / sizeof(vectors[0]);
+
+    // Check orthogonality for each pair of vectors
+    for (int i = 0; i < numVectors; i++) {
+        for (int j = i + 1; j < numVectors; j++) {
+            int dotProductValue = dotProduct(vectors[i], vectors[j], 3);
+
+            if (dotProductValue == 0) {
+                printf("Vectors [%d] and [%d] are orthogonal.\n", i, j);
+            } else {
+                printf("Vectors [%d] and [%d] are not orthogonal.\n", i, j);
+            }
+        }
+    }
+
+    return 0;
+}
+
